@@ -23,6 +23,9 @@ class AmbulanceDispatch(BaseModel):
 class SimulationModeRequest(BaseModel):
     mode: str = Field(..., pattern="^(VAZHI_AI|FIXED_TIME)$")
 
+class SimulationSpeedRequest(BaseModel):
+    speed: float = Field(..., ge=0.1, le=10.0)
+
 class SimulationMetricsResponse(BaseModel):
     mode: str
     simulation_time_seconds: int

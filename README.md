@@ -82,6 +82,7 @@ $$\text{Priority Score} = 0.30 \cdot \text{Demand} + 0.20 \cdot \text{Queue} + 0
 
 ## 🛠️ Technology Stack
 
+- **PC Web Dashboard**: React, TypeScript, Vite, Zustand, Lucide Icons, interactive SVG Corridor Map.
 - **Mobile Client**: React Native, Expo (SDK 57+), TypeScript, Zustand, `react-native-svg`, Expo Vector Icons.
 - **Backend**: Python 3.11, FastAPI, WebSockets, Uvicorn, SQLAlchemy, Pydantic.
 - **Intelligence & Simulation**: NetworkX, microscopic discrete-time flow simulation.
@@ -94,6 +95,15 @@ $$\text{Priority Score} = 0.30 \cdot \text{Demand} + 0.20 \cdot \text{Queue} + 0
 
 ```
 VAZHI-AI/
+├── dashboard/                        # Primary PC / Desktop Web Dashboard (Vite + React)
+│   ├── src/
+│   │   ├── components/               # Header, ControlBar, NetworkMap, JunctionPanel, EmergencyPanel
+│   │   ├── services/                 # REST API & Resilient WebSocket client
+│   │   ├── store/                    # Zustand store
+│   │   ├── styles/                   # Dark theme design system & tokens
+│   │   ├── types/                    # Shared TypeScript interfaces
+│   │   └── App.tsx                   # Master operations center layout
+│   └── package.json
 ├── mobile/                           # React Native Expo Mobile Application
 │   ├── App.tsx                       # Root Tab Navigator & WebSocket lifecycle
 │   ├── src/
@@ -155,17 +165,23 @@ python -m pytest backend/tests -v
 # Start FastAPI server with live WebSocket streaming
 uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
-API Documentation will be available at: `http://localhost:8000/docs`
+API Documentation: `http://localhost:8000/docs`
 
-### 3. Mobile Setup
+### 3. PC Web Dashboard Setup (Primary Interface)
+```bash
+cd dashboard
+npm install
+npm run dev
+```
+PC Dashboard: `http://localhost:5173`
+
+### 4. Mobile Client Setup (Expo)
 ```bash
 cd mobile
-
-# Start Expo development server
-npm start
-# Or preview in browser:
-npm run web
+npm install
+npm run web   # Or: npm start
 ```
+Mobile Web: `http://localhost:8081`
 
 ---
 

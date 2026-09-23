@@ -125,7 +125,11 @@ export const NetworkMap: React.FC<NetworkMapProps> = ({ frame, onSelectJunction 
           const signals = jData?.signals || { NORTH: 'RED', SOUTH: 'RED', EAST: 'RED', WEST: 'RED' };
 
           return (
-            <G key={jId} onPress={() => handleJunctionPress(jId)}>
+            <G
+              key={jId}
+              onPress={() => handleJunctionPress(jId)}
+              {...(Platform.OS === 'web' ? { onClick: () => handleJunctionPress(jId) } : {})}
+            >
               {/* Pulse Ring for Selected */}
               {isSelected && (
                 <Circle cx={coords.x} cy={coords.y} r="22" fill="#38BDF8" opacity="0.2" />

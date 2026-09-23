@@ -14,6 +14,11 @@ class SimulationService:
         self.scenario_runner = ScenarioRunner(self.simulator)
         self.ticker_task: Optional[asyncio.Task] = None
         self.is_running = False
+        self.speed_multiplier: float = 1.0
+
+    def set_speed(self, speed: float):
+        self.speed_multiplier = max(0.1, min(10.0, float(speed)))
+        logger.info(f"Simulation speed updated to {self.speed_multiplier}x")
 
     async def start_ticker(self):
         if self.ticker_task and not self.ticker_task.done():
@@ -29,6 +34,7 @@ class SimulationService:
                 # If a demo scenario is running, it controls its own step progression
                 if not self.scenario_runner.is_running_scenario:
                     frame = self.simulator.tick(dt=1.0)
+                    frame["speed_multiplier"] = self.speed_multiplier
                     await manager.broadcast(frame)
 
                     tick_count += 1
@@ -36,7 +42,8 @@ class SimulationService:
                     if tick_count % 10 == 0:
                         self._persist_metrics_snapshot()
 
-                await asyncio.sleep(1.0)
+                sleep_time = max(0.05, 1.0 / self.speed_multiplier)
+                await asyncio.sleep(sleep_time)
             except asyncio.CancelledError:
                 break
             except Exception as e:

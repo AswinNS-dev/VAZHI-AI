@@ -1,10 +1,10 @@
 import { TrafficFrame, MetricsData, DecisionData } from '../types/traffic';
 import { Platform } from 'react-native';
 
-// Standard local IP configuration
+// Standard local IP configuration or configurable environment variables
 const HOST = Platform.OS === 'android' ? '10.0.2.2' : 'localhost';
-export const API_BASE_URL = `http://${HOST}:8000/api`;
-export const WS_URL = `ws://${HOST}:8000/ws/traffic`;
+export const API_BASE_URL = process.env.EXPO_PUBLIC_API_URL || `http://${HOST}:8000/api`;
+export const WS_URL = process.env.EXPO_PUBLIC_WS_URL || `ws://${HOST}:8000/ws/traffic`;
 
 export async function fetchTrafficState(): Promise<TrafficFrame> {
   const res = await fetch(`${API_BASE_URL}/traffic`);

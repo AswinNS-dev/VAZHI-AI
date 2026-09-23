@@ -6,6 +6,7 @@ from backend.app.schemas.traffic import (
     WaitingSurgeRequest,
     AmbulanceDispatch,
     SimulationModeRequest,
+    SimulationSpeedRequest,
     SimulationMetricsResponse
 )
 from intelligence.configuration import get_config
@@ -61,6 +62,11 @@ def set_simulation_mode(req: SimulationModeRequest) -> Dict[str, str]:
     service.simulator.set_mode(req.mode)
     return {"status": "MODE_UPDATED", "mode": service.simulator.mode}
 
+@router.post("/simulation/speed")
+def set_simulation_speed(req: SimulationSpeedRequest) -> Dict[str, Any]:
+    service.set_speed(req.speed)
+    return {"status": "SPEED_UPDATED", "speed": service.speed_multiplier}
+
 @router.post("/simulation/demo-scenario")
 async def trigger_demo_scenario(background_tasks: BackgroundTasks) -> Dict[str, str]:
     if service.scenario_runner.is_running_scenario:
@@ -100,3 +106,13 @@ def update_scoring_weights(weights: Dict[str, float]) -> Dict[str, Any]:
     cfg = get_config()
     cfg.update_weights(weights)
     return {"status": "WEIGHTS_UPDATED", "current_weights": cfg.weights}
+
+@router.post("/config")
+def update_traffic_config(data: Dict[str, Any]) -> Dict[str, Any]:
+    cfg = get_config()
+    for section, values in data.items():
+        if isinstance(values, dict) and section in cfg.config:
+            cfg.config[section].update(values)
+        else:
+            cfg.config[section] = values
+    return {"status": "CONFIG_UPDATED", "config": cfg.config}
