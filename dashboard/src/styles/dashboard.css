@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import 'mapbox-gl/dist/mapbox-gl.css';
+@import 'maplibre-gl/dist/maplibre-gl.css';
 
 :root {
   --bg-app: #060A14;
@@ -317,4 +319,229 @@ body {
   0% { transform: scale(0.9); opacity: 0.6; }
   50% { transform: scale(1.15); opacity: 1; filter: drop-shadow(0 0 8px #10B981); }
   100% { transform: scale(0.9); opacity: 0.6; }
+}
+
+/* ========================================================
+   3D MapLibre Digital Twin Map Styles
+   ======================================================== */
+.maplibre-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #050914;
+}
+
+.maplibre-canvas-container {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.maplibregl-canvas {
+  outline: none;
+}
+
+/* 3D Junction Pill Marker */
+.junction-marker-3d {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.junction-marker-3d:hover .junction-badge {
+  transform: scale(1.08);
+}
+
+.junction-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(11, 19, 36, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1.5px solid #233554;
+  border-radius: 20px;
+  padding: 3px 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  transition: all 0.2s ease;
+}
+
+.junction-badge.selected {
+  border-color: #38BDF8;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.45);
+}
+
+.junction-id-text {
+  font-size: 11px;
+  font-weight: 800;
+  color: #FFF;
+  letter-spacing: 0.05em;
+}
+
+.junction-phase-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+
+/* Signal Pillar Marker */
+.signal-marker-3d {
+  display: flex;
+  gap: 3px;
+  background: #090F1C;
+  border: 1px solid #1C2B47;
+  border-radius: 10px;
+  padding: 2px 4px;
+  margin-top: 3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.signal-led {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  opacity: 0.3;
+}
+
+.signal-led.active {
+  opacity: 1;
+  box-shadow: 0 0 6px currentColor;
+}
+
+/* Priority Halo at Roundabout / Junctions */
+.junction-halo-ring {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid rgba(245, 158, 11, 0.8);
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, rgba(245, 158, 11, 0.03) 70%, transparent 100%);
+  pointer-events: none;
+  animation: halo-pulse 2s infinite ease-in-out;
+}
+
+@keyframes halo-pulse {
+  0% { transform: scale(0.9); opacity: 0.5; }
+  50% { transform: scale(1.18); opacity: 1; filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.6)); }
+  100% { transform: scale(0.9); opacity: 0.5; }
+}
+
+/* 3D Hospital POI Marker */
+.hospital-marker-3d {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 1.5px solid rgba(239, 68, 68, 0.7);
+  border-radius: 20px;
+  padding: 4px 10px;
+  box-shadow: 0 4px 20px rgba(239, 68, 68, 0.35);
+  cursor: pointer;
+  user-select: none;
+  pointer-events: auto;
+  transition: all 0.2s ease;
+}
+
+.hospital-marker-3d:hover {
+  transform: scale(1.06);
+  border-color: #EF4444;
+  box-shadow: 0 0 24px rgba(239, 68, 68, 0.6);
+}
+
+.hospital-cross-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: #EF4444;
+  color: #FFF;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.hospital-label-text {
+  font-size: 11px;
+  font-weight: 800;
+  color: #F8FAFC;
+  white-space: nowrap;
+}
+
+/* 3D Vehicle Markers */
+.vehicle-marker-3d {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.vehicle-marker-3d:hover .vehicle-icon-box {
+  transform: scale(1.4);
+}
+
+.vehicle-icon-box {
+  width: 15px;
+  height: 15px;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+  transition: transform 0.15s ease-out;
+}
+
+/* Ambulance Special Marker */
+.ambulance-marker-3d {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(220, 38, 38, 0.95);
+  border: 1.5px solid #FEF2F2;
+  border-radius: 12px;
+  padding: 2px 6px;
+  cursor: pointer;
+  pointer-events: auto;
+  animation: amb-beacon 0.8s infinite alternate;
+  box-shadow: 0 0 16px rgba(239, 68, 68, 0.9);
+  z-index: 150;
+}
+
+@keyframes amb-beacon {
+  from { box-shadow: 0 0 8px rgba(239, 68, 68, 0.6); }
+  to { box-shadow: 0 0 24px rgba(239, 68, 68, 1); }
+}
+
+.ambulance-tag {
+  font-size: 9px;
+  font-weight: 900;
+  color: #FFF;
+  font-family: var(--font-mono);
+}
+
+/* Cyber Map Tooltip */
+.map-cyber-tooltip {
+  background: rgba(10, 17, 32, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid #1E2D48;
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #FFF;
+  font-size: 11px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+  position: absolute;
+  z-index: 1000;
 }

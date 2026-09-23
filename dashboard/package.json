@@ -9,10 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/mapbox-gl": "^3.4.1",
+    "lucide-react": "^1.16.0",
+    "mapbox-gl": "^3.31.0",
+    "maplibre-gl": "^6.11.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "zustand": "^5.0.3",
-    "lucide-react": "^1.16.0"
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
