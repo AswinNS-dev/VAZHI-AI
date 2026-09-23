@@ -1,0 +1,295 @@
+{
+  "network_id": "vazhi_tn_corridor_01",
+  "name": "Tamil Nadu Urban Prototype Corridor (J1-J4 + Hospital)",
+  "intersections": [
+    {
+      "id": "J1",
+      "name": "Junction 1 (West Feeder)",
+      "coordinates": { "x": 100, "y": 300, "lat": 13.0418, "lng": 80.2341 },
+      "approaches": {
+        "NORTH": { "name": "North Approach", "inflow_road": "IN_J1_N", "outflow_road": "OUT_J1_N" },
+        "SOUTH": { "name": "South Approach", "inflow_road": "IN_J1_S", "outflow_road": "OUT_J1_S" },
+        "EAST":  { "name": "East to J2",    "inflow_road": "ROAD_J2_J1", "outflow_road": "ROAD_J1_J2" },
+        "WEST":  { "name": "West Inflow",   "inflow_road": "IN_J1_W", "outflow_road": "OUT_J1_W" }
+      }
+    },
+    {
+      "id": "J2",
+      "name": "Junction 2 (Central Hub)",
+      "coordinates": { "x": 350, "y": 300, "lat": 13.0425, "lng": 80.2450 },
+      "approaches": {
+        "NORTH": { "name": "North Inflow",  "inflow_road": "IN_J2_N", "outflow_road": "OUT_J2_N" },
+        "SOUTH": { "name": "South to J4",   "inflow_road": "ROAD_J4_J2", "outflow_road": "ROAD_J2_J4" },
+        "EAST":  { "name": "East to J3",    "inflow_road": "ROAD_J3_J2", "outflow_road": "ROAD_J2_J3" },
+        "WEST":  { "name": "West from J1",  "inflow_road": "ROAD_J1_J2", "outflow_road": "ROAD_J2_J1" }
+      }
+    },
+    {
+      "id": "J3",
+      "name": "Junction 3 (Hospital Gateway)",
+      "coordinates": { "x": 600, "y": 300, "lat": 13.0431, "lng": 80.2562 },
+      "approaches": {
+        "NORTH": { "name": "North Inflow",  "inflow_road": "IN_J3_N", "outflow_road": "OUT_J3_N" },
+        "SOUTH": { "name": "South Inflow",  "inflow_road": "IN_J3_S", "outflow_road": "OUT_J3_S" },
+        "EAST":  { "name": "East to Hospital", "inflow_road": "ROAD_HOSP_J3", "outflow_road": "ROAD_J3_HOSP" },
+        "WEST":  { "name": "West from J2",  "inflow_road": "ROAD_J2_J3", "outflow_road": "ROAD_J3_J2" }
+      }
+    },
+    {
+      "id": "J4",
+      "name": "Junction 4 (South Sector)",
+      "coordinates": { "x": 350, "y": 500, "lat": 13.0315, "lng": 80.2448 },
+      "approaches": {
+        "NORTH": { "name": "North to J2",   "inflow_road": "ROAD_J2_J4", "outflow_road": "ROAD_J4_J2" },
+        "SOUTH": { "name": "South Inflow",  "inflow_road": "IN_J4_S", "outflow_road": "OUT_J4_S" },
+        "EAST":  { "name": "East Inflow",   "inflow_road": "IN_J4_E", "outflow_road": "OUT_J4_E" },
+        "WEST":  { "name": "West Inflow",   "inflow_road": "IN_J4_W", "outflow_road": "OUT_J4_W" }
+      }
+    }
+  ],
+  "special_destinations": [
+    {
+      "id": "HOSPITAL",
+      "name": "Government Multi Super Speciality Hospital",
+      "coordinates": { "x": 800, "y": 300, "lat": 13.0440, "lng": 80.2680 },
+      "connected_intersection": "J3",
+      "inflow_road": "ROAD_J3_HOSP"
+    }
+  ],
+  "roads": [
+    {
+      "id": "ROAD_J1_J2",
+      "from_node": "J1",
+      "to_node": "J2",
+      "length_m": 450,
+      "lanes": 3,
+      "capacity_pcu": 40,
+      "speed_limit_kmh": 50
+    },
+    {
+      "id": "ROAD_J2_J1",
+      "from_node": "J2",
+      "to_node": "J1",
+      "length_m": 450,
+      "lanes": 3,
+      "capacity_pcu": 40,
+      "speed_limit_kmh": 50
+    },
+    {
+      "id": "ROAD_J2_J3",
+      "from_node": "J2",
+      "to_node": "J3",
+      "length_m": 400,
+      "lanes": 3,
+      "capacity_pcu": 35,
+      "speed_limit_kmh": 50
+    },
+    {
+      "id": "ROAD_J3_J2",
+      "from_node": "J3",
+      "to_node": "J2",
+      "length_m": 400,
+      "lanes": 3,
+      "capacity_pcu": 35,
+      "speed_limit_kmh": 50
+    },
+    {
+      "id": "ROAD_J2_J4",
+      "from_node": "J2",
+      "to_node": "J4",
+      "length_m": 350,
+      "lanes": 2,
+      "capacity_pcu": 30,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "ROAD_J4_J2",
+      "from_node": "J4",
+      "to_node": "J2",
+      "length_m": 350,
+      "lanes": 2,
+      "capacity_pcu": 30,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "ROAD_J3_HOSP",
+      "from_node": "J3",
+      "to_node": "HOSPITAL",
+      "length_m": 300,
+      "lanes": 3,
+      "capacity_pcu": 30,
+      "speed_limit_kmh": 50
+    },
+    {
+      "id": "ROAD_HOSP_J3",
+      "from_node": "HOSPITAL",
+      "to_node": "J3",
+      "length_m": 300,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 50
+    },
+    {
+      "id": "IN_J1_W",
+      "from_node": "ENTRY_W",
+      "to_node": "J1",
+      "length_m": 300,
+      "lanes": 3,
+      "capacity_pcu": 35,
+      "speed_limit_kmh": 50
+    },
+    {
+      "id": "OUT_J1_W",
+      "from_node": "J1",
+      "to_node": "EXIT_W",
+      "length_m": 300,
+      "lanes": 2,
+      "capacity_pcu": 30,
+      "speed_limit_kmh": 50
+    },
+    {
+      "id": "IN_J1_N",
+      "from_node": "ENTRY_J1_N",
+      "to_node": "J1",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "OUT_J1_N",
+      "from_node": "J1",
+      "to_node": "EXIT_J1_N",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "IN_J1_S",
+      "from_node": "ENTRY_J1_S",
+      "to_node": "J1",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "OUT_J1_S",
+      "from_node": "J1",
+      "to_node": "EXIT_J1_S",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "IN_J2_N",
+      "from_node": "ENTRY_J2_N",
+      "to_node": "J2",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "OUT_J2_N",
+      "from_node": "J2",
+      "to_node": "EXIT_J2_N",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "IN_J3_N",
+      "from_node": "ENTRY_J3_N",
+      "to_node": "J3",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "OUT_J3_N",
+      "from_node": "J3",
+      "to_node": "EXIT_J3_N",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "IN_J3_S",
+      "from_node": "ENTRY_J3_S",
+      "to_node": "J3",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "OUT_J3_S",
+      "from_node": "J3",
+      "to_node": "EXIT_J3_S",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "IN_J4_S",
+      "from_node": "ENTRY_J4_S",
+      "to_node": "J4",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "OUT_J4_S",
+      "from_node": "J4",
+      "to_node": "EXIT_J4_S",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "IN_J4_E",
+      "from_node": "ENTRY_J4_E",
+      "to_node": "J4",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "OUT_J4_E",
+      "from_node": "J4",
+      "to_node": "EXIT_J4_E",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "IN_J4_W",
+      "from_node": "ENTRY_J4_W",
+      "to_node": "J4",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    },
+    {
+      "id": "OUT_J4_W",
+      "from_node": "J4",
+      "to_node": "EXIT_J4_W",
+      "length_m": 250,
+      "lanes": 2,
+      "capacity_pcu": 25,
+      "speed_limit_kmh": 40
+    }
+  ]
+}

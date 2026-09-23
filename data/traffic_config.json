@@ -1,0 +1,49 @@
+{
+  "system": {
+    "name": "VAZHI-AI",
+    "version": "1.0.0",
+    "description": "Real-Time Network-Aware Traffic & Emergency Intelligence MVP",
+    "mode": "PROTOTYPE_SIMULATION",
+    "target_region": "Tamil Nadu Urban Corridor Prototype"
+  },
+  "scoring_weights": {
+    "demand_weight": 0.30,
+    "queue_weight": 0.20,
+    "waiting_weight": 0.15,
+    "emergency_weight": 0.25,
+    "downstream_congestion_weight": 0.10
+  },
+  "starvation": {
+    "starvation_threshold_seconds": 60.0,
+    "starvation_multiplier": 1.5,
+    "max_starvation_score_boost": 0.50
+  },
+  "signal_timing": {
+    "min_green_seconds": 10,
+    "max_green_seconds": 45,
+    "yellow_seconds": 3,
+    "all_red_seconds": 2,
+    "fixed_cycle_default_seconds": 30
+  },
+  "downstream_thresholds": {
+    "low_max": 0.40,
+    "moderate_max": 0.70,
+    "high_max": 0.85,
+    "critical_threshold": 0.85,
+    "spillback_hold_threshold": 0.90
+  },
+  "emergency": {
+    "preemption_lead_time_seconds": 20,
+    "clearance_buffer_seconds": 5,
+    "hospital_node": "HOSPITAL"
+  },
+  "simulation": {
+    "tick_rate_hz": 1.0,
+    "default_speed_kmh": 40.0,
+    "car_pcu": 1.0,
+    "bike_pcu": 0.5,
+    "bus_pcu": 3.0,
+    "truck_pcu": 2.5,
+    "ambulance_pcu": 1.2
+  }
+}
